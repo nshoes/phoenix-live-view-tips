@@ -1,3 +1,25 @@
+Here's a collection of useful [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) tidbits. I thought that the format and easy grok-ability of asking questions would be valuable. [`LiveView`'s documentation](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html) is fantastic and thorough, but you got to read all of it to get all of it. And we all know we don't read every line of published documentation :)
+
+The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` channel. Thanks to everyone who asks questions and helps out!
+
+## Contents 📖
+
+- [Why is `mount/3` being called twice?](#why-is-mount3-being-called-twice)
+- [I'm fetching the `current_user` in `mount` and it's being fetched... twice 😤😤](#im-fetching-the-current_user-in-mount-and-its-being-fetched-twice)
+- [I want my `LiveView` to be rendered once and only once](#i-want-my-liveview-to-be-rendered-once-and-only-once)
+- [I want to upload a file!](#i-want-to-upload-a-file)
+- [My form isn't tracking changes! 😠](#my-form-isnt-tracking-changes)
+- [Nothing is tracking changes!!! 😡😡😡](#nothing-is-tracking-changes)
+- [Is pagination a thing?](#is-pagination-a-thing)
+- [I'm trying to redirect in a callback but it's being ignored 🤔](#im-trying-to-redirect-in-a-callback-but-its-being-ignored)
+- [No, really, my redirect isn't working in a callback 🤔🤔](#no-really-my-redirect-isnt-working-in-a-callback)
+- [Can I style live flash messages?](#can-i-style-live-flash-messages)
+- [But what does my `LiveView` process state _really_ look like?](#but-what-does-my-liveview-process-state-_really_-look-like)
+- [I'm using `live_action`s and my modules are getting large and unwieldly 🙁](#im-using-live_actions-and-my-modules-are-getting-large-and-unwieldly)
+- [Why can't I send a message to my `LiveComponent` process?](#why-cant-i-send-a-message-to-my-livecomponent-process)
+- [Why does Phoenix 1.5 generate a `root.html.leex` if it doesn't track changes?](#why-does-phoenix-15-generate-a-roothtmlleex-if-it-doesnt-track-changes)
+- [Got anything else? 🥺](#got-anything-else)
+
 ## Why is `mount/3` being called twice?
 
 Straight from [the docs themselves](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#c:mount/3):
