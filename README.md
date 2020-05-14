@@ -18,6 +18,8 @@ The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` chann
 - [I'm using `live_action`s and my modules are getting large and unwieldly 🙁](#im-using-live_actions-and-my-modules-are-getting-large-and-unwieldly)
 - [Why can't I send a message to my `LiveComponent` process?](#why-cant-i-send-a-message-to-my-livecomponent-process)
 - [Why does Phoenix 1.5 generate a `root.html.leex` if it doesn't track changes?](#why-does-phoenix-15-generate-a-roothtmlleex-if-it-doesnt-track-changes)
+- [Is the `user_id` in my `socket.assigns` secure? Can it be tampered with? 👮](#is-the-user_id-in-my-socketassigns-secure-can-it-be-tampered-with)
+- [Where are my `LiveView` routes?](#where-are-my-liveview-routes)
 - [Got anything else? 🥺](#got-anything-else)
 
 ## Why is `mount/3` being called twice?
@@ -237,6 +239,21 @@ end
 ## Why does Phoenix 1.5 generate a `root.html.leex` if it doesn't track changes?
 
 It can be used to track changes later if you want to render a `LiveView` inside of it. Mainly, it's to reduce confusion 😁
+
+## Is the `user_id` in my `socket.assigns` secure? Can it be tampered with? 👮
+
+Is is secure. External clients have no access to it as long as your signing secrets are safe.
+
+## Where are my `LiveView` routes?
+
+Given:
+
+```elixir
+live "/foo/new", FooLive.New, :new
+resources "/foo", FooController, only: [:index, :create, :show]
+```
+
+It would be easy to assume that `Routes.foo_path(@conn, :new)` would generate a link that would bring us to our `LiveView`. However, that's not the case. The full module name, namespace and all, will be taken to account so the path you'd want to use is actually `Routes.foo_new_path(@conn, :new)`. Remember to check `mix phx.routes` if you're having issues finding paths! All live and dead routes will be listed.
 
 ## Got anything else? 🥺
 
