@@ -20,6 +20,8 @@ The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` chann
 - [Why does Phoenix 1.5 generate a `root.html.leex` if it doesn't track changes?](#why-does-phoenix-15-generate-a-roothtmlleex-if-it-doesnt-track-changes)
 - [Is the `user_id` in my `socket.assigns` secure? Can it be tampered with? 👮](#is-the-user_id-in-my-socketassigns-secure-can-it-be-tampered-with-)
 - [Where are my `LiveView` routes?](#where-are-my-liveview-routes)
+- [My stateless `LiveComponent` is sending all my `assigns` over the wire!!](#my-stateless-livecomponent-is-sending-all-my-assigns-over-the-wire)
+- [My entire user is in `Plug.Session` so I don't have to make database calls in `LiveView`. This is a good thing, right?](#my-entire-user-is-in-plugsession-so-i-dont-have-to-make-database-calls-in-liveview-this-is-a-good-thing-right)
 - [Got anything else? 🥺](#got-anything-else-)
 
 ## Why is `mount/3` being called twice?
@@ -254,6 +256,17 @@ resources "/foo", FooController, only: [:index, :create, :show]
 ```
 
 It would be easy to assume that `Routes.foo_path(@conn, :new)` would generate a link that would bring us to our `LiveView`. However, that's not the case. The full module name, namespace and all, will be taken to account so the path you'd want to use is actually `Routes.foo_new_path(@conn, :new)`. Remember to check `mix phx.routes` if you're having issues finding paths! All live and dead routes will be listed.
+
+## My stateless `LiveComponent` is sending all my `assigns` over the wire!!
+
+`update/2` merges assigns into the socket, then `render/1` is called with _all_ assigns. Thus, no change tracking occurs. If you've got a stateless `LiveComponent` with a lot of assigns, consider:
+
+- Making it stateful by passing an `:id` to the component
+- Abstract the most updated assign into a stateful component and past the rest of the assigns to a stateless component
+
+## My entire user is in `Plug.Session` so I don't have to make database calls in `LiveView`. This is a good thing, right?
+
+No :) It's unlikely you want the whole `%User{}` struct. There could be other metadata added to it (see [`pow`](https://github.com/danschultzer/pow)), cache busting gets thrown out the door, and you're subject to cookie overflow.
 
 ## Got anything else? 🥺
 
