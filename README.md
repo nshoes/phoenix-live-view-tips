@@ -2,7 +2,7 @@ Here's a collection of useful [Phoenix LiveView](https://github.com/phoenixframe
 
 The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` channel. Thanks to everyone who asks questions and helps out!
 
-## Contents 📖
+# Contents 📖
 
 - [Why is `mount/3` being called twice?](#why-is-mount3-being-called-twice)
 - [I'm fetching the `current_user` in `mount` and it's being fetched... twice 😤😤](#im-fetching-the-current_user-in-mount-and-its-being-fetched-twice-)
@@ -22,7 +22,7 @@ The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` chann
 - [Where are my `LiveView` routes?](#where-are-my-liveview-routes)
 - [Got anything else? 🥺](#got-anything-else-)
 
-## Why is `mount/3` being called twice?
+# Why is `mount/3` being called twice?
 
 Straight from [the docs themselves](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#c:mount/3):
 
@@ -40,7 +40,7 @@ end
 
 Note that if you're performing some expensive operation in `mount/3`, take a look at [`connected?`](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#connected?/1). A check to see if the socket is connected to defer the work is fine when it's needed.
 
-## I'm fetching the `current_user` in `mount` and it's being fetched... twice 😤😤
+# I'm fetching the `current_user` in `mount` and it's being fetched... twice 😤😤
 
 Which is expected, see above :D If you are fetching it in a plug you're actually fetching it three times... the horror! To solve this, reach for [`assign_new/3`](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#assign_new/3). This allows you a few niceties such as sharing connection assigns on the initial HTTP request and only setting an assign if it's not available to children components.
 
@@ -122,7 +122,7 @@ Let's go through the rendering logic for `PageLiveChild`:
 - On the first disconnected mount, `PageLiveChild` will render `"FOO"` in place of `@bar` because the key is already available in socket coming in from the parent, `PageLive`
 - On the second connected mount, it will render exactly same thing! That's because `:bar` is still set from the socket assign in `PageLive`
 
-## I want my `LiveView` to be rendered once and only once
+# I want my `LiveView` to be rendered once and only once
 
 Seeing `mount/3` being called on every `live_redirect` but want it to just be called once? Render your component in `root.html.leex` like this:
 
@@ -132,23 +132,23 @@ Seeing `mount/3` being called on every `live_redirect` but want it to just be ca
 
 Now `PageLive` will survive redirects.
 
-## I want to upload a file!
+# I want to upload a file!
 
 File uploads aren't supported by `LiveView` just yet. Check out [Jon Rowe's](https://github.com/JonRowe) library [Phoenix Live View Dropzone](https://github.com/JonRowe/phoenix_live_view_dropzone).
 
-## My form isn't tracking changes! 😠
+# My form isn't tracking changes! 😠
 
 `LiveView` can't compute diffs instead of anonymous functions, so [`form_for/4`](https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#form_for/4) doesn't work. Make sure you are using [`form_for/3`](https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#form_for/3).
 
-## Nothing is tracking changes!!! 😡😡😡
+# Nothing is tracking changes!!! 😡😡😡
 
 Make sure you're writing code in a `html.leex` file, not `html.eex` 😇
 
-## Is pagination a thing?
+# Is pagination a thing?
 
 Not out of the box, but check out [joshchernoff's](https://gist.github.com/joshchernoff) very helpful [gist](https://gist.github.com/joshchernoff/e8473ed01f31e01a2153c9b621ee529f).
 
-## I'm trying to redirect in a callback but it's being ignored 🤔
+# I'm trying to redirect in a callback but it's being ignored 🤔
 
 Just like [`assign/3`](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#assign/3), [`redirect/2`](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#redirect/2) annotates and _returns_ the updated socket. Meaning, this won't work:
 
@@ -178,11 +178,11 @@ end
 
 Remember: data is immutable in Elixir!
 
-## No, really, my redirect isn't working in a callback 🤔🤔
+# No, really, my redirect isn't working in a callback 🤔🤔
 
 Note that [`redirect/2`](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#redirect/2) requires you take action on the provided redirect location. If you want to redirect right from the server, use [`push_patch/2`](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#push_patch/2) or [`push_redirect/2`](https://hexdocs.pm/phoenix_live_view/0.12.1/Phoenix.LiveView.html#push_redirect/2).
 
-## Can I style live flash messages?
+# Can I style live flash messages?
 
 Absolutely! In a fresh Phoenix app generated with the `--live` flag, you can see this in `templates/layout/live.html.leex`:
 
@@ -206,11 +206,11 @@ If you'd like to conditionally display it and wrap it in more complicated markup
 <% end %>
 ```
 
-## But what does my `LiveView` process state _really_ look like?
+# But what does my `LiveView` process state _really_ look like?
 
 Check out [toranb's](https://github.com/toranb) quick blog post on [inspecting `LiveView` process state](https://toranbillups.com/blog/archive/2020/05/09/phoenix-liveview-process-state/).
 
-## I'm using `live_action`s and my modules are getting large and unwieldly 🙁
+# I'm using `live_action`s and my modules are getting large and unwieldly 🙁
 
 Instead of separating logic via `live_action`s in the router like this:
 
@@ -232,19 +232,19 @@ scope "/", AppWeb do
 end
 ```
 
-## Why can't I send a message to my `LiveComponent` process?
+# Why can't I send a message to my `LiveComponent` process?
 
 `LiveComponent`s aren't in their own process, only `LiveView`s are. If you call `self()` in a `LiveComponent` you'll get back that `PID` of the `LiveView` parent.
 
-## Why does Phoenix 1.5 generate a `root.html.leex` if it doesn't track changes?
+# Why does Phoenix 1.5 generate a `root.html.leex` if it doesn't track changes?
 
 It can be used to track changes later if you want to render a `LiveView` inside of it. Mainly, it's to reduce confusion 😁
 
-## Is the `user_id` in my `socket.assigns` secure? Can it be tampered with? 👮
+# Is the `user_id` in my `socket.assigns` secure? Can it be tampered with? 👮
 
 Is is secure. External clients have no access to it as long as your signing secrets are safe.
 
-## Where are my `LiveView` routes?
+# Where are my `LiveView` routes?
 
 Given:
 
@@ -255,6 +255,6 @@ resources "/foo", FooController, only: [:index, :create, :show]
 
 It would be easy to assume that `Routes.foo_path(@conn, :new)` would generate a link that would bring us to our `LiveView`. However, that's not the case. The full module name, namespace and all, will be taken to account so the path you'd want to use is actually `Routes.foo_new_path(@conn, :new)`. Remember to check `mix phx.routes` if you're having issues finding paths! All live and dead routes will be listed.
 
-## Got anything else? 🥺
+# Got anything else? 🥺
 
 Check out [Awesome Phoenix Liveview](https://github.com/beam-community/awesome-phoenix-liveview).
