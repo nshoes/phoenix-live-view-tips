@@ -20,7 +20,7 @@ The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` chann
 - [Why does Phoenix 1.5 generate a `root.html.leex` if it doesn't track changes?](#why-does-phoenix-15-generate-a-roothtmlleex-if-it-doesnt-track-changes)
 - [Is the `user_id` in my `socket.assigns` secure? Can it be tampered with? 👮](#is-the-user_id-in-my-socketassigns-secure-can-it-be-tampered-with)
 - [Where are my `LiveView` routes?](#where-are-my-liveview-routes)
-- [Got anything else? 🥺](#got-anything-else)
+- [Got anything else? 🥺](#got-anything-else-)
 
 ## Why is `mount/3` being called twice?
 
