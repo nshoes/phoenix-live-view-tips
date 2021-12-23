@@ -268,6 +268,12 @@ It would be easy to assume that `Routes.foo_path(@conn, :new)` would generate a 
 
 No :) It's unlikely you want the whole `%User{}` struct. There could be other metadata added to it (see [`pow`](https://github.com/danschultzer/pow)), cache busting gets thrown out the door, and you're subject to cookie overflow.
 
+## Add css class to navbar in Phoenix Liveview
+https://elixirforum.com/t/conn-request-path-doesnt-change-in-header/44424/5?u=dfang
+
+## phoenix_pubsub: Broadcast from iex not trigger handle_info in liveview
+https://elixirforum.com/t/broadcast-from-iex-not-working/43273/4?u=dfang
+
 ## Got anything else? 🥺
 
 Check out [Awesome Phoenix Liveview](https://github.com/beam-community/awesome-phoenix-liveview).
