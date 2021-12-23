@@ -24,6 +24,7 @@ The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` chann
 - [My entire user is in `Plug.Session` so I don't have to make database calls in `LiveView`. This is a good thing, right?](#my-entire-user-is-in-plugsession-so-i-dont-have-to-make-database-calls-in-liveview-this-is-a-good-thing-right)
 - [Add css class to navbar item in phoenix liveview](#add-css-class-to-navbar-in-phoenix-liveview)
 - [phoenix_pubsub: Broadcast from iex not trigger handle_info in liveview](https://github.com/dfang/phoenix-live-view-tips#phoenix_pubsub-broadcast-from-iex-not-trigger-handle_info-in-liveview)
+- [How to remove unused dependencies from mix](https://github.com/dfang#phoenix-live-view-tips#how-to-remove-unused-dependencies-from-mix)
 - [Got anything else? 🥺](#got-anything-else-)
 
 ## Why is `mount/3` being called twice?
@@ -275,6 +276,9 @@ https://elixirforum.com/t/conn-request-path-doesnt-change-in-header/44424/5?u=df
 
 ## phoenix_pubsub: Broadcast from iex not trigger handle_info in liveview
 https://elixirforum.com/t/broadcast-from-iex-not-working/43273/4?u=dfang
+
+## How to remove unused dependencies from mix
+https://bartoszgorka.com/clear-mix-lock
 
 ## Got anything else? 🥺
 
