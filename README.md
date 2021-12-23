@@ -22,6 +22,8 @@ The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` chann
 - [Where are my `LiveView` routes?](#where-are-my-liveview-routes)
 - [My stateless `LiveComponent` is sending all my `assigns` over the wire!!](#my-stateless-livecomponent-is-sending-all-my-assigns-over-the-wire)
 - [My entire user is in `Plug.Session` so I don't have to make database calls in `LiveView`. This is a good thing, right?](#my-entire-user-is-in-plugsession-so-i-dont-have-to-make-database-calls-in-liveview-this-is-a-good-thing-right)
+- [Add css class to navbar item in phoenix liveview](#add-css-class-to-navbar-in-phoenix-liveview)
+- [phoenix_pubsub: Broadcast from iex not trigger handle_info in liveview](https://github.com/dfang/phoenix-live-view-tips#phoenix_pubsub-broadcast-from-iex-not-trigger-handle_info-in-liveview)
 - [Got anything else? 🥺](#got-anything-else-)
 
 ## Why is `mount/3` being called twice?
