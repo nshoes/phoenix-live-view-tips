@@ -22,6 +22,9 @@ The first draft was aggregated from ~10 days of Elixir Slack's `#liveview` chann
 - [Where are my `LiveView` routes?](#where-are-my-liveview-routes)
 - [My stateless `LiveComponent` is sending all my `assigns` over the wire!!](#my-stateless-livecomponent-is-sending-all-my-assigns-over-the-wire)
 - [My entire user is in `Plug.Session` so I don't have to make database calls in `LiveView`. This is a good thing, right?](#my-entire-user-is-in-plugsession-so-i-dont-have-to-make-database-calls-in-liveview-this-is-a-good-thing-right)
+- [Add css class to navbar item in phoenix liveview](#add-css-class-to-navbar-in-phoenix-liveview)
+- [phoenix_pubsub: Broadcast from iex not trigger handle_info in liveview](https://github.com/dfang/phoenix-live-view-tips#phoenix_pubsub-broadcast-from-iex-not-trigger-handle_info-in-liveview)
+- [How to remove unused dependencies from mix](https://github.com/dfang#phoenix-live-view-tips#how-to-remove-unused-dependencies-from-mix)
 - [Got anything else? 🥺](#got-anything-else-)
 
 ## Why is `mount/3` being called twice?
@@ -267,6 +270,15 @@ It would be easy to assume that `Routes.foo_path(@conn, :new)` would generate a 
 ## My entire user is in `Plug.Session` so I don't have to make database calls in `LiveView`. This is a good thing, right?
 
 No :) It's unlikely you want the whole `%User{}` struct. There could be other metadata added to it (see [`pow`](https://github.com/danschultzer/pow)), cache busting gets thrown out the door, and you're subject to cookie overflow.
+
+## Add css class to navbar in Phoenix Liveview
+https://elixirforum.com/t/conn-request-path-doesnt-change-in-header/44424/5?u=dfang
+
+## phoenix_pubsub: Broadcast from iex not trigger handle_info in liveview
+https://elixirforum.com/t/broadcast-from-iex-not-working/43273/4?u=dfang
+
+## How to remove unused dependencies from mix
+https://bartoszgorka.com/clear-mix-lock
 
 ## Got anything else? 🥺
 
